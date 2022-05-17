@@ -1,0 +1,23 @@
+name: reviewdog / shellcheck
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  pull_request:
+    paths:
+      - '*.sh'
+      - .github/workflows/shellcheck.yml
+
+jobs:
+  shellcheck:
+    name: shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.0.2
+      - name: shellcheck
+        uses: reviewdog/action-shellcheck@v1.15.0
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
