@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  caddy:
+    build: .
+    #image: caddy/caddy  # official image
+    ports:
+      - 1080:80
+      - 10443:443
