@@ -6,6 +6,7 @@ ARCH="$(uname -m)"
 case "$ARCH" in
   x86_64) CADDY_ARCH="amd64" ;;
   aarch64) CADDY_ARCH="arm64" ;;
+  armv7l) CADDY_ARCH="armv7" ;;
   *) CADDY_ARCH="$ARCH" ;;
 esac
 
