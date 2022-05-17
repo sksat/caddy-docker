@@ -3,9 +3,12 @@ LABEL maintainer "sksat <sksat@sksat.net>"
 
 FROM debian:stable-slim as tmp
 WORKDIR /prepare
-RUN apt-get update -y; apt-get install -y wget
+RUN set -eu; \
+  apt-get update -y; \
+  apt-get install -y wget
 COPY download.sh .
 RUN bash download.sh
+RUN ./caddy version
 
 FROM gcr.io/distroless/base
 # docs: https://caddyserver.com/docs/conventions#file-locations
