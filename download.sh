@@ -1,6 +1,9 @@
 #!/bin/bash
 
-wget -O caddy.tar.gz "https://github.com/caddyserver/caddy/releases/download/v2.5.1/caddy_2.5.1_linux_amd64.tar.gz"
+CADDY_VERSION="2.5.1"
+CADDY_ARCH="amd64"
+
+wget -O caddy.tar.gz "https://github.com/caddyserver/caddy/releases/download/v${CADDY_VERSION}/caddy_${CADDY_VERSION}_linux_${CADDY_ARCH}.tar.gz"
 tar zxvf caddy.tar.gz
 ./caddy version
 
