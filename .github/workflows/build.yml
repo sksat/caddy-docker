@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4.0.1
         with:
-          images: ghcr.io/${{ github.repository }},sksat/${{ github.event.repository.name }}
+          images: ghcr.io/${{ github.repository }}
           flavor: |
             latest=auto
 
