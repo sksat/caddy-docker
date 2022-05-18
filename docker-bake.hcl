@@ -6,7 +6,6 @@ target "docker-metadata-action" {
 target "caddy" {
   inherits = ["docker-metadata-action"]
   context = "."
-  tags = ["sksat/caddy-docker"]
 }
 
 target "caddy-local" {
