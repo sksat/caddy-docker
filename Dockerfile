@@ -16,6 +16,7 @@ ENV XDG_CONFIG_HOME /config
 ENV XDG_DATA_HOME /data
 
 COPY --from=tmp /prepare/caddy /usr/bin/
+COPY --from=tmp /prepare/LICENSE /LICENSE-caddy
 COPY --from=tmp /prepare/Caddyfile /etc/caddy/
 COPY --from=tmp /prepare/index.html /usr/share/caddy/
 
