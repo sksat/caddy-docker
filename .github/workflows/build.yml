@@ -1,0 +1,43 @@
+name: Build container image
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+  pull_request:
+    paths:
+      - '.github/workflows/build.yml'
+      - 'docker-bake.hcl'
+      - 'Dockerfile'
+      - 'download.sh'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.0.2
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4.0.1
+        with:
+          images: ghcr.io/${{ github.repository }},sksat/${{ github.event.repository.name }}
+          flavor: |
+            latest=auto
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2.0.0
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2.0.0
+      -
+        name: Build and push
+        uses: docker/bake-action@v2.0.0
+        with:
+          files: |
+            ./docker-bake.hcl
+            ${{ steps.meta.outputs.bake-file }}
+          targets: all
+          push: ${{ github.event_name != 'pull_request' }}
