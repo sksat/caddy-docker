@@ -1,6 +1,11 @@
+// Special target: https://github.com/docker/metadata-action#bake-definition
+target "docker-metadata-action" {
+  tags = ["caddy-docker:local"]
+}
+
 target "caddy" {
+  inherits = ["docker-metadata-action"]
   context = "."
-  tags = ["sksat/caddy-docker"]
 }
 
 target "caddy-local" {
