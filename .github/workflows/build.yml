@@ -49,3 +49,5 @@ jobs:
             ${{ steps.meta.outputs.bake-file }}
           targets: all
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
